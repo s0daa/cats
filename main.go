@@ -20,12 +20,12 @@ func main() {
 	const p = "."
 	images = findInPath(p)
 	indexHandler := func(w http.ResponseWriter, req *http.Request) {
-		http.Redirect(w, req,  "/cats/" + getRandomCat(), 300)
+		http.Redirect(w, req, "/cats/"+getRandomCat(), 321)
 	}
 	http.HandleFunc("/", indexHandler)
 
 	fileServer := http.FileServer(imgDir(p))
-	http.Handle("/cats/",  http.StripPrefix("/cats/", fileServer))
+	http.Handle("/cats/", http.StripPrefix("/cats/", fileServer))
 
 	catHandler := func(w http.ResponseWriter, req *http.Request) {
 		http.ServeFile(w, req, getRandomCat())
@@ -39,7 +39,6 @@ func main() {
 
 	log.Fatal(http.ListenAndServe(":8090", nil))
 }
-
 
 type imgDir string
 
@@ -62,7 +61,9 @@ func (d imgDir) Open(name string) (http.File, error) {
 func findInPath(path string) []string {
 	var a []string
 	filepath.WalkDir(path, func(s string, d fs.DirEntry, e error) error {
-		if e != nil { return e }
+		if e != nil {
+			return e
+		}
 		if Mimetypes[filepath.Ext(d.Name())] {
 			a = append(a, s)
 		}
@@ -72,5 +73,5 @@ func findInPath(path string) []string {
 }
 
 func getRandomCat() string {
-	return images[rand.Intn(len(images) - 0) + 0]
+	return images[rand.Intn(len(images)-0)+0]
 }
