@@ -28,6 +28,7 @@ func main() {
 	http.Handle("/cats/", http.StripPrefix("/cats/", fileServer))
 
 	catHandler := func(w http.ResponseWriter, req *http.Request) {
+		w.WriteHeader(http.StatusOK)
 		http.ServeFile(w, req, getRandomCat())
 	}
 	http.HandleFunc("/cat", catHandler)
