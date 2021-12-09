@@ -1,5 +1,2 @@
 # cats
-my collection of cat images, star repo pls and thx :3 (also i give them names sometimes)
-
-also dont be afraid to contribute !!!!!!!!!!!!!!!!!!!!!!!!!!!
-meow
+i made this so i can have all of my cat images across all of my devices, feel free to pr.
